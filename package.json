@@ -1,0 +1,21 @@
+{
+  "name": "ReceiptGenerator",
+  "version": "0.1.2",
+  "description": "I'm too lazy to make receits for stuff so I made this app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "~4.9.x",
+    "wkhtmltopdf": "0.1.5"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BraydenCleary/ReceiptGenerator"
+  },
+  "license": "MIT"
+}
