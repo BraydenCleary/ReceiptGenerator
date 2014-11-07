@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "express": "~4.9.x",
-    "wkhtmltopdf": "0.1.5"
+    "wkhtmltopdf": "0.1.5",
+    "jolira-bootstrap-datepicker": "1.0.0",
+    "body-parser": "1.9.2"
   },
   "engines": {
     "node": "0.10.x"
