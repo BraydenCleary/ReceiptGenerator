@@ -10,7 +10,8 @@
     "express": "~4.9.x",
     "wkhtmltopdf": "0.1.5",
     "jolira-bootstrap-datepicker": "1.0.0",
-    "body-parser": "1.9.2"
+    "body-parser": "1.9.2",
+    "underscore": "1.7.0"
   },
   "engines": {
     "node": "0.10.x"

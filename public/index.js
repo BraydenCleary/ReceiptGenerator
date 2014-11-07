@@ -7,6 +7,10 @@ var app = angular.module('receiptGenerator', [])
         error(function(data, status){
         });
     }
+
+    $scope.clearInputs = function(){
+      this.receipt = {}
+    }
   }]);
 
 $(document).ready(function(){

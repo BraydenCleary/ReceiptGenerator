@@ -23,7 +23,6 @@
             <th class='span2 table-header'>Time</th>
             <th class='span2 table-header'>Amount</th>
             <th class='span8 table-header'>Dates</th>
-            <th class='span2 table-header'>Create</th>
           </tr>
         </thead>
         <tbody>
@@ -38,10 +37,13 @@
                 <span class="add-on"><i class="icon-th"></i></span>
               </div>
             </td>
-            <td class='span2'><button class='button btn btn-success btn-larger' ng-click='createReceipts()'>Create Receipts</button></td>
           </tr>
         </tbody>
       </table>
+      <div>
+        <button class='button btn btn-danger btn-large' ng-click='clearInputs()'>Clear</button>
+        <button class='button btn btn-success btn-large' ng-click='createReceipts()'>Create Receipts</button>
+      </div>
     </div>
   </body>
 </html>
