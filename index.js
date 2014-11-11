@@ -1,9 +1,10 @@
-var express = require('express')
+var express = require('express');
 var app = express();
 var wkhtmltopdf = require('wkhtmltopdf');
 var fs = require('fs');
 var bodyParser = require('body-parser');
-var _ = require('underscore')
+var _ = require('underscore');
+var sleep = require('sleep');
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -30,11 +31,15 @@ app.post('/receipts', function(req, res){
     return individual_receipt
   })
 
-  receipts.forEach(function(receipt){
-    var filename = receipt.vendor + "_" + receipt.time + "_" + receipt.date + '.pdf'
+  _.each(receipts, function(receipt){
+    var filename = receipt.vendor + "_" + receipt.time + "_" + receipt.date
     fs.readFile(__dirname + '/public/receipt.html', 'utf8', function(err, template){
       var compiled = _.template(template);
-      wkhtmltopdf(compiled(receipt), {output: filename});
+      sleep.sleep(1);
+      var tempFile = fs.writeFile(filename + '.html', compiled(receipt));
+      fs.readFile(__dirname + '/' + filename + '.html', 'utf8', function(err, template){
+        wkhtmltopdf(template, {output: filename + '.pdf'});
+      })
     })
   })
 });
