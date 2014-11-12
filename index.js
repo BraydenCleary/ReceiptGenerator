@@ -4,7 +4,6 @@ var wkhtmltopdf = require('wkhtmltopdf');
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var _ = require('underscore');
-var sleep = require('sleep');
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -34,12 +33,14 @@ app.post('/receipts', function(req, res){
   _.each(receipts, function(receipt){
     var filename = receipt.vendor + "_" + receipt.time + "_" + receipt.date
     fs.readFile(__dirname + '/public/receipt.html', 'utf8', function(err, template){
+      if (!fs.existsSync(__dirname + '/receipts')) {
+        fs.mkdirSync(__dirname + '/receipts')
+      }
       var compiled = _.template(template);
-      sleep.sleep(1);
-      var tempFile = fs.writeFile(filename + '.html', compiled(receipt));
-      fs.readFile(__dirname + '/' + filename + '.html', 'utf8', function(err, template){
-        wkhtmltopdf(template, {output: filename + '.pdf'});
-      })
+      fs.writeFileSync(filename + '.html', compiled(receipt));
+      var tempFile = fs.readFileSync(filename + '.html');
+      wkhtmltopdf(tempFile, {output: __dirname + '/receipts/' + filename + '.pdf'});
+      fs.unlink(filename + '.html')
     })
   })
 });
